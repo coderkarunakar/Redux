@@ -1,8 +1,9 @@
 import React from 'react';
+import Product from './Product';
 const DashBoard =()=>{
     return(
         <>
-         <h1>DashBoard</h1>
+        <Product/>
         </>
        
     )
