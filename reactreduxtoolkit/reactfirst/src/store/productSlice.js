@@ -26,13 +26,16 @@ export const {fetchProducts} = productSlice.actions;
 
 export default productSlice.reducer;
 
+
+
+//Redux Thunk
 //here am creating one thunk to handle async operation in fetching the data
 export function getProducts(){
     //this will have a dispatch and our state
     return async function getProductsThunk(dispatch,getState){
         //
-      const data = await   fetch('https://fakestoreapi.com/products')
-        const result = data.json();
+      const response = await   fetch('https://fakestoreapi.com/products')
+        const result = await response.json();
         dispatch(fetchProducts(result));
     }
 }
