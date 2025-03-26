@@ -1,6 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 //syntax of slice
 const cartSlice = createSlice({
+    //cart is the key name from the store.js
     name : 'cart',
     initialState : []  ,
     //for creating a reducer
@@ -17,7 +18,7 @@ const cartSlice = createSlice({
 });
 
 //slice is a collection of redux reduce the logic ,actions for a single feature
-//action will give you the functions
+//action will give yaou the functions
 export const {add,remove} = cartSlice.actions;
 //here reducer will give you the state
 export default cartSlice.reducer;
