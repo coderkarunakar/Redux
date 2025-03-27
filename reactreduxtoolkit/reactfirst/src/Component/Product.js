@@ -5,17 +5,26 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../store/cartSlice";
 import { getProducts } from "../store/productSlice";
+import { Alert } from "react-bootstrap";
+import StatusCode from "../utils/statuscode.js";
 const Product = () =>{
 
     const dispatch = useDispatch();
     //get the data with the help of useselector hook (here product is the thing used inside the productSlice.js)
-    const {data : products} = useSelector(state => state.products)
+    const {data : products, status} = useSelector(state => state.products)
 
     useEffect(()=>{
        //dispatch the action for fetchProducts , i need dispatch method and a thunk creator
         dispatch(getProducts());
     },[]);
 
+
+    if(status === StatusCode.LOADING){
+        return <Alert>Loading...</Alert>
+    }
+    if(status === StatusCode.ERROR){
+        return <Alert key="danger" variant="danger">Something went Wrong</Alert> 
+    }
 const addToCart = (product) =>{
     //dispatch an add action,we just need to tell which action you want to dispatch
     dispatch(add(product));
