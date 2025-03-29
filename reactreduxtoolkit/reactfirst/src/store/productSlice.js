@@ -7,6 +7,7 @@ const initialState = {
 }
 //syntax of slice
 const productSlice = createSlice({
+    //reduxslice named products
     //cart is the key name from the store.js
     name : 'products',
     initialState  ,
@@ -16,6 +17,8 @@ const productSlice = createSlice({
         //     //updating the state with the data i will get from the api i.e action.payload
         //     state.data = action.payload;
         // }
+
+        //handles different states of getProducts(pending,fullfilled,rejected)
         extraReducers : (builder) => {
                 //read the data(state update logic)
                 builder
@@ -39,6 +42,8 @@ const productSlice = createSlice({
 export const {fetchProducts} = productSlice.actions;
 //here reducer will give you the state
 
+
+//the reducer managing product state
 export default productSlice.reducer;
 //this thunk will take first arg as action type,2nd is callback function
 export const  getProducts = createAsyncThunk('products/get',async () => {

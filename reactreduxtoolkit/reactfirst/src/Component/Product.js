@@ -8,9 +8,10 @@ import { getProducts } from "../store/productSlice";
 import { Alert } from "react-bootstrap";
 import StatusCode from "../utils/statuscode.js";
 const Product = () =>{
-
+//gets the redux dispatch function to send actions
     const dispatch = useDispatch();
     //get the data with the help of useselector hook (here product is the thing used inside the productSlice.js)
+    //fetching products,status from state.products 
     const {data : products, status} = useSelector(state => state.products)
 
     useEffect(()=>{
@@ -25,6 +26,7 @@ const Product = () =>{
     if(status === StatusCode.ERROR){
         return <Alert key="danger" variant="danger">Something went Wrong</Alert> 
     }
+    //this will add to cart when this is onClicked via redux Actions 
 const addToCart = (product) =>{
     //dispatch an add action,we just need to tell which action you want to dispatch
     dispatch(add(product));
@@ -45,8 +47,6 @@ const addToCart = (product) =>{
                     <Card.Text>
                         INR.{product.price}
                     </Card.Text>
-                    
-                
                 </Card.Body>
                 <Card.Footer style={{background : 'white'}}>
                 <Button variant="primary" onClick={()  => addToCart(product)}>Add to Cart</Button>
